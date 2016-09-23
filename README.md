@@ -49,6 +49,7 @@
 > 常见压缩格式 ： .zip .gz .bz2 .tar.gz .tar.bz2
 
 > tar -jxvf jp.tar.bz2 -C /tmp/ 指定目录解压缩
+
 > tar -jxvf /tmp/jp.tar.bz2 jp anaconda  压缩多个文件，并且指定目录
 
 ## find ，-exec
