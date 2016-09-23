@@ -23,12 +23,37 @@
 |-exec {} \ |||可以在其他命令之后再继续执行命令|
 |grep|-iv||搜索字符串命令 grep [选项] 字符串 文件名|
 |man|-f||帮助命令 man ls **man 需要下载包** 编辑模式\-d 然后按n就可以向下跳 shift上|
+|passwd|||找到所有关于|
+|ls --help|||在xShell中显示中文|
+|help|||获取内部命令 介绍|
+|info|||帮助查询，回车进入(带有*号) u 进入上层页面 n进入下一节 p进入上一节 q退出|
+|zip|-r||zip 压缩文件名 源文件  zip -r 压缩文件名 源目录|
+|unzip|||解压缩|
+|touch|-acfm||用来更新文件的或目录的时间，文件不存在则创建文件|
+|gzip|||.gz 格式压缩 gzip 源文件 #这样源文件会消失，gzip -c 源文件 > 压缩文件源文件保留,gzip -r 目录 压缩目录下的所有子文件，不能压缩目录|
+|ls > abc|||将ls 当前数据写到 abc文件下|
+|cat|||输出文件|
+|gunzip gzip -d|||两种都可以解压缩|
+|bzip2|||bzip2 -k 源文件 这样可以保留源文件，bzip2 源文件 `不能压缩目录`|
+|bzip2 -d bunzip2|||解压缩|
+|tar|-cvf||打包命令，例如 tar -cvf longzls.tar longzls `打包后压缩`|
+|tar|-xvf||解打包命令 -x解打包|
+|tar|-zcvf||直接将其打包解压gzip|
+|tar|-jcvf||直接将其打包为bzip2|
+|tar|-ztvf||t代表测试的意思，只查看里面内容但是不解压|
 |||||
 |||||
 |||||
+> locate 遵循/etc/updatedb.conf 配置文件
+
+> 常见压缩格式 ： .zip .gz .bz2 .tar.gz .tar.bz2
+
+> tar -jxvf jp.tar.bz2 -C /tmp/ 指定目录解压缩
+> tar -jxvf /tmp/jp.tar.bz2 jp anaconda  压缩多个文件，并且指定目录
+
 ## find ，-exec
 ```
-> locate 遵循/etc/updatedb.conf 配置文件
+
  
 > find /var/log/ -mtime +10 查找10天前修改的文件
 > -10 10天内修改的文件
@@ -49,7 +74,7 @@
 > 查找I节点是262422的文件 
 > 
 > find /etc -size +20k -a -size -50k
-> \#查找/etc目录下，大于20KB并且小于50KB的文件
+> #查找/etc目录下，大于20KB并且小于50KB的文件
 > -a and 逻辑于 
 > -o or 逻辑或 
 > 
