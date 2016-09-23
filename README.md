@@ -41,6 +41,11 @@
 |tar|-zcvf||直接将其打包解压gzip|
 |tar|-jcvf||直接将其打包为bzip2|
 |tar|-ztvf||t代表测试的意思，只查看里面内容但是不解压|
+|shutdown|-chr||shutdown [选项] 时间|
+|date||时间|
+|&|||shutdown -r 05:30 & 代表后台执行 ，吧这条命令了放到后台组不占用当前操作字段|
+|runlevel|||查看运行级别|
+|logout|||退出登录命令|
 |||||
 |||||
 |||||
@@ -51,6 +56,12 @@
 > tar -jxvf jp.tar.bz2 -C /tmp/ 指定目录解压缩
 
 > tar -jxvf /tmp/jp.tar.bz2 jp anaconda  压缩多个文件，并且指定目录
+
+> shutdown -r now 立即重启   -h重启 -c取消前一个关机命令
+
+> cat /etc/inittab  决定你启动是在字符界面还是图像界面 **默认运行级别**
+
+> linux 中大写X代表图形界面
 
 ## find ，-exec
 ```
