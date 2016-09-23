@@ -26,6 +26,8 @@
 |||||
 |||||
 |||||
+## find ，-exec
+```
 > locate 遵循/etc/updatedb.conf 配置文件
  
 > find /var/log/ -mtime +10 查找10天前修改的文件
@@ -52,6 +54,7 @@
 > -o or 逻辑或 
 > 
 > find /etc -size +20k -a -size -50k -exec ls -lh {} \;
+```
 
 ## 常用目录的作用
 ```
