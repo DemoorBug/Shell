@@ -45,8 +45,8 @@
 |date||时间|
 |&|||shutdown -r 05:30 & 代表后台执行 ，吧这条命令了放到后台组不占用当前操作字段|
 |runlevel|||查看运行级别|
-|logout|||退出登录命令|
-|||||
+|**logout**|||退出登录命令|
+|mount|-a||挂载命令|
 |||||
 |||||
 > locate 遵循/etc/updatedb.conf 配置文件
@@ -57,7 +57,7 @@
 
 > tar -jxvf /tmp/jp.tar.bz2 jp anaconda  压缩多个文件，并且指定目录
 
-> shutdown -r now 立即重启   -h重启 -c取消前一个关机命令
+> shutdown -r now 立即重启   -h关机 -c取消前一个关机命令
 
 > cat /etc/inittab  决定你启动是在字符界面还是图像界面 **默认运行级别**
 
