@@ -47,6 +47,23 @@
 |runlevel|||查看运行级别|
 |**logout**|||退出登录命令|
 |mount|-a||挂载命令|
+|mount|-to||mount \[-t文件系统] [-o特殊选项] 设备文件名 挂载点|
+|umount|||卸载命令|
+|fdisk|-l||查看已经读取的设备|
+|w|||查看登录用户信息|
+|who|||查看登录用户信息|
+|last|||查询当前登录和过去登录的用户信息，/var/log/wtmp/这个文件是被编译的，一旦修改直接崩溃|
+|lastlog|||查看所有用户的最后一次登录时间，/var/log/lastlog/|
+|echo $SHELL|||打印当前环境的shell用的是什么sh、ksh、Bash、psh、zsh|
+|echo|-e||输出命令,echo \[选项] \[输出内容]|
+|vim|||貌似是创建一个文本|
+|chmod 755 hello.sh|||赋予执行权限|
+|bash hello.sh|||通过Bash调用执行脚本|
+|alias|||显示已有的别名,alias ls="ls --color=never" 定义别名|
+|history|-cw||历史命令 history \[选项] \[历史命令保存文件]|
+|wc|-cwl||输入重定向，wc \[选项]\[文件名]|
+|more|||分屏显示|
+|netstat|-an|||
 |||||
 |||||
 > locate 遵循/etc/updatedb.conf 配置文件
@@ -62,6 +79,125 @@
 > cat /etc/inittab  决定你启动是在字符界面还是图像界面 **默认运行级别**
 
 > linux 中大写X代表图形界面
+
+> mount -t vfat /dev/sdb1 /mnt/usb/  挂载U盘 vfat = fat32
+
+> 光盘设备文件名 /dev/sr0  
+
+> mount -t iso9660 /dev/sr0 /mnt/cdrom/ 挂载光盘 
+
+> 按i, I, o, O, a, A, r, R任一字符进入输入模式  
+
+## VIM
+```
+vim + abc 直接进入最后一行
+vim +2 abc 进入第二行
+vim +/a abc 查看所有带A的高亮  命令模式按n切换
+vim aa bb cc 打开多个文件，n下一页 N 上一页
+```
+
+## 通配符
+```
+？ 一个字符
+*   所有
+[]  [abc]
+[-] [0-9][0-9]
+[^] [^0-9]逻辑非
+----------
+`` 是用来包含系统命令的 $(ls) 替代方案
+'' 变量 \ $ 不会被执行
+"" 和单元号相反
+# 代表注释
+$ 用于调用变量，调用name的时候，需要$name方式
+\ 转以符合
+```
+
+##管道符
+```
+1 多命令顺序执行
+;   命令1;命令2
+&&  命令1&&命令2
+||  命令1||命令2
+2.管道符
+这个才是管道符
+命令1 | 命令2  用命令2去操作命令1打印出来的东西
+
+netstat -an | grep ESTABLISHED | wc -l 通过他我们可以知道服务器连接多少人
+```
+
+## 重定向
+```
+ls > test.log   文件不存在创建并修改
+ls >> test.log  追加
+detecang 2>>test.log 错误信息追加，没有空格
+
+ls >> test.log 2>&1
+ls &>> test.log 不管错误还是标准 都追加
+ls $> /dev/null 丢进黑洞
+
+ls>>文件1 2>>文件2 正确的保存到文件1 错误的保存到文件2   
+```
+
+##历史命令的调用
+```
+!n 重复执行第N条历史命令
+!! 重复执行上一条命令
+!字符 重复执行最后一条以该字符开头的命令
+```
+
+## 快捷键
+```
+ctrl+c 强制终止当前命令
+ctrl+l 清屏   clear
+ctrl+a 光标移动到命令行首
+ctrl+e 光标移动到命令行尾
+ctrl+u 从光标所在位置删除到行首
+ctrl+z 把命令放入后台 &
+ctrl+r 在历史命令中搜索
+```
+
+## 环境变量
+```
+vi ~/.bashrc 
+#写入环境变量的配置文件
+source .bashrc 直接生效，或者重新登录
+unalias cp 临时删除
+```
+
+## 第一个脚本
+```
+vi hello.sh
+#!/bin/bash  必须有
+#The first program 注释
+
+echo -e "\e[1;34m 天上掉下个林妹妹 \e[0m"
+```
+
+## shell 
+```
+vi /etc/shells  可以查看当前Bash与sh兼容
+sh 进入 sh shell
+exit 退出
+csh 进入 csh shell
+
+```
+
+
+##mount -o指定一些操作 
+```
+atime/noatime   更新访问时间/不更新访问时间。访问分区文件时,是否更新文件的访问时间,默认更新
+async/sync  异步/同步，默认为异步
+auto/noauto 自动/手动,mount -a 命令执行时,是否会自动安装/etc/fstab文件内容挂载，默认为自动
+defaults    自动默认值,相当于re,suid,dev,exec,auto,nouser,async这七个选项
+exec/noexec  执行/不执行,设定是否允许在文件系统中执行科执行文件,默认是exec允许
+remount 重新挂载已经挂载的文件系统,一般用于指定修改特殊权限
+rw/ro   读写/只读,文件系统挂载时,是否具有读写权限,默认是rw
+suid/nosuid 具有/不具有SUID权限,设定文件系统是否具有SUID和SGID的权限，默认是具有
+user/nouser 允许/不允许普通用户挂载,设定文件系统是否允许普通用户挂载,默认是不允许,只有root可以挂载分区
+usrquota 写入代表文件系统支持用户磁盘配额,默认不支持
+grpquota 写入代表文件系统支持组磁盘配额,默认不支持
+
+```
 
 ## find ，-exec
 ```
