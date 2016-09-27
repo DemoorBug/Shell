@@ -64,6 +64,11 @@
 |wc|-cwl||输入重定向，wc \[选项]\[文件名]|
 |more|||分屏显示|
 |netstat|-an|||
+|df|-lahHTtx||磁盘管理|
+|du|-bkmhHs||统计磁盘文件大小|
+|fdisk|||分区|
+|passwd|||修改密码|
+|||||
 |||||
 |||||
 > locate 遵循/etc/updatedb.conf 配置文件
@@ -88,12 +93,137 @@
 
 > 按i, I, o, O, a, A, r, R任一字符进入输入模式  
 
+##用户和用户组
+```
+/etc/group 存储当前系统中所有用户组信息
+组名称:组密码占位符:组编号:组中用户名列表
+/etc/gshadow 存储当前系统中用户组的密码信息
+组名称：组密码：租管理者：组中用户列表 * ！可以认为密码为空
+/etc/passwd 存储当前系统中所有用户的信息
+用户名:密码占位符:用户编号：用户编号组：用户注释信息：用户主目录：shell类型
+/etc/shadow 存储当前系统中所有用户的密码信息
+
+groupadd sexy
+groupmod -n market sexy 修改组名
+groupmod -g 668 market 修改组编号
+groupadd -g 888 boss 创建box 直接改变组编号
+groupadel market 删除 用户组 必须先删除用户
+
+用户
+groupadd sexy
+useradd -g sexy sdf   -g指定用户组
+useradd -g sexy jzmb
+useradd -d /home/xxx imooc -d指定用户文件夹  没有写就会直接创建同名文件夹
+usermod -c dgdzmx sdf  修改sdf用户备注
+usermod -l cls sdf  新用户写到前面，旧用户写到后面 修改
+usermod -d /home/cls cls 修改cls用户文件夹
+usermod -g sexy imooc 将用户imooc切换到 sexy
+userdel jzmb 删除用户jzmb 不会删除文件
+userdel -r jzmb 删除他的个人文件
+
+
+touch /etc/nologin  出了root 用户 其他人都无法登陆   在~目录创建就好
+
+passwd -l cls 锁定账户
+pwsswd -u cls 解锁
+passwd -d cls 清除密码
+gpasswd -a cls boss 附属组
+gpasswd -a cls boss,sexy 多个附属组
+newgrp boss 切换附属组 要输入组密码
+gpasswd =d cls boss 清除附属组
+
+useradd -g group1 -G group2,group3,········ 及指定主要组和附属组
+gpasswrd imooc  设置组密码
+
+
+su username   切换用户
+Whoami 我谁谁？显示当前登录用户名
+id cls  显示指定用户信息，包括用户编号，用户名
+groups cls 显示cls用户所在组
+chfn cls 设置用户资料，一次输入用户资料
+finger imooc 显示用户详细资料
+```
+
+
+##swap
+```
+fdisk /dev/sdb 
+p
+t
+磁盘1-n
+L 编号
+
+mkswap /dev/sdb5  格式化
+swapon /dev/sbb5 启用
+free 加载状况
+swapoff /dev/sdb5 停止
+```
+
+##自动挂载
+```
+vim + /etc/fstab
+/dev/sdb1 /mnt/imooc ext4 defaults 0 0
+```
+
+##格式化
+```
+mkfs.ext4 /dev/sdb1
+mkfs -t ext4 /dev/sdb2
+```
+
+##分区
+```
+fdisk 查看帮助
+fdisk -l  最后一块就是我们新添加的盘
+fdisk /dev/sdb
+m  查看帮助信息
+n 添加分区   p表示主分区  e表示扩展分区
+p 查看当前分区表
+
+d 删除分区
+w 写入方案 保存
+
+parted 分区 MBR GPT 两个都可以使用此工具
+help 帮助信息
+select /dev/sdc
+mklabel gpt
+print 查看当前分区详情
+print all 查看所有
+mkpart 添加分区 提问模式 交互模式
+mkpart test 2000 3000 命令模式
+rm 3 删除第三块分区
+unit GB 位单位
+```
+
 ## VIM
 ```
 vim + abc 直接进入最后一行
 vim +2 abc 进入第二行
 vim +/a abc 查看所有带A的高亮  命令模式按n切换
 vim aa bb cc 打开多个文件，n下一页 N 上一页
+底行模式常用指令
+:w  保存修改
+:q  退出
+:!  强制执行
+:ls 列出当前打开的所有文件
+:n N
+:15  快速定位
+/xxx 从光标位置向后搜索
+?xxx 从光标位置向前搜索
+命令模式
+h 光标左移
+j 光标下移
+k 光标上移
+l 光标右移
+ctrl+f 向下翻页
+ctrl+b 向上翻页
+ctrl+d 向下翻半页
+ctrl+u 向上翻半页
+dd 删除光标所在行
+o 在光标所在行的下方插入一行并切换到输入模式
+yy 复制光标所在的行
+p 在光标所在行的下方粘贴
+P 在光标的所在行的上放粘贴
 ```
 
 ## 通配符
