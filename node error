@@ -1,0 +1,32 @@
+MPFR=mpfr-2.4.2
+GMP=gmp-4.3.2
+MPC=mpc-mpc-1.0.1
+wget ftp://ftp.gnu.org/gnu/mpfr/$MPFR.tar.bz2 || exit 1
+tar xjf $MPFR.tar.bz2 || exit 1
+ln -sf $MPFR mpfr || exit 1
+wget ftp://ftp.gnu.org/gnu/gmp/$GMP.tar.bz2 || exit 1
+tar xjf $GMP.tar.bz2  || exit 1
+ln -sf $GMP gmp || exit 1
+
+wget ftp://ftp.gnu.org/gnu/mpc/$MPC.tar.gz || exit 1
+tar xzf $MPC.tar.gz || exit 1
+ln -sf $MPC mpc || exit 1
+
+rm $MPFR.tar.bz2 $GMP.tar.bz2 $MPC.tar.gz || exit 1
+
+
+
+make[1]: *** [/root/node-v4.6.0/out/Release/obj.target/v8_base/deps/v8/src/x64/deoptimizer-x64.o] 错误 1
+make[1]: Leaving directory `/root/node-v4.6.0/out'
+make: *** [node] 错误 2
+
+
+  rm -f /root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_libbase.a && ar crs /root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_libbase.a /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/atomicops_internals_x86_gcc.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/bits.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/cpu.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/division-by-constant.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/functional.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/logging.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/once.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/platform/time.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/platform/condition-variable.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/platform/mutex.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/platform/semaphore.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/sys-info.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/utils/random-number-generator.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/platform/platform-linux.o /root/node-v4.6.0/out/Release/obj.target/v8_libbase/deps/v8/src/base/platform/platform-posix.o
+  ln -f "/root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_libbase.a" "/root/node-v4.6.0/out/Release/libv8_libbase.a" 2>/dev/null || (rm -rf "/root/node-v4.6.0/out/Release/libv8_libbase.a" && cp -af "/root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_libbase.a" "/root/node-v4.6.0/out/Release/libv8_libbase.a")
+  g++ '-DV8_TARGET_ARCH_X64' '-DENABLE_DISASSEMBLER' -I../deps/v8  -pthread -Wall -Wextra -Wno-unused-parameter -m64 -fno-strict-aliasing -m64 -O3 -ffunction-sections -fdata-sections -fno-omit-frame-pointer -fdata-sections -ffunction-sections -O3 -fno-rtti -fno-exceptions -std=gnu++0x -MMD -MF /root/node-v4.6.0/out/Release/.deps//root/node-v4.6.0/out/Release/obj.target/mksnapshot/deps/v8/src/snapshot/mksnapshot.o.d.raw   -c -o /root/node-v4.6.0/out/Release/obj.target/mksnapshot/deps/v8/src/snapshot/mksnapshot.o ../deps/v8/src/snapshot/mksnapshot.cc
+  g++ -pthread -rdynamic -m64 -m64  -o /root/node-v4.6.0/out/Release/mksnapshot -Wl,--start-group /root/node-v4.6.0/out/Release/obj.target/mksnapshot/deps/v8/src/snapshot/mksnapshot.o /root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_base.a /root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_nosnapshot.a /root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_libplatform.a /root/node-v4.6.0/out/Release/obj.target/deps/v8/tools/gyp/libv8_libbase.a -Wl,--end-group -ldl -lrt
+  LD_LIBRARY_PATH=/root/node-v4.6.0/out/Release/lib.host:/root/node-v4.6.0/out/Release/lib.target:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; cd ../deps/v8/tools/gyp; mkdir -p /root/node-v4.6.0/out/Release/obj.target/v8_snapshot/geni; "/root/node-v4.6.0/out/Release/mksnapshot" --log-snapshot-positions --logfile "/root/node-v4.6.0/out/Release/obj.target/v8_snapshot/geni/snapshot.log" "/root/node-v4.6.0/out/Release/obj.target/v8_snapshot/geni/snapshot.cc" ""
+/root/node-v4.6.0/out/Release/mksnapshot: /usr/lib64/libstdc++.so.6: version `GLIBCXX_3.4.15' not found (required by /root/node-v4.6.0/out/Release/mksnapshot)
+make[1]: *** [/root/node-v4.6.0/out/Release/obj.target/v8_snapshot/geni/snapshot.cc] 错误 1
+make[1]: Leaving directory `/root/node-v4.6.0/out'
+make: *** [node] 错误 2
