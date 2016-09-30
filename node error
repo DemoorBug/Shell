@@ -30,3 +30,19 @@ make: *** [node] 错误 2
 make[1]: *** [/root/node-v4.6.0/out/Release/obj.target/v8_snapshot/geni/snapshot.cc] 错误 1
 make[1]: Leaving directory `/root/node-v4.6.0/out'
 make: *** [node] 错误 2
+
+
+/root/node-v4.6.0/out/Release/mksnapshot: /usr/lib64/libstdc++.so.6: version `GLIBCXX_3.4.15' not found (required by /root/node-v4.6.0/out/Release/mksnapshot)
+make[1]: *** [/root/node-v4.6.0/out/Release/obj.target/v8_snapshot/geni/snapshot.cc] 错误 1
+make[1]: Leaving directory `/root/node-v4.6.0/out'
+make: *** [node] 错误 2
+
+
+strings /usr/lib/libstdc++.so.6 | grep GLIBC
+
+es6.typescrip.webpack
+
+Generating placeholder library build/opt/third_party/wiredtiger/libwiredtiger.a
+Skipping ranlib for build/opt/third_party/wiredtiger/libwiredtiger.a
+Linking build/opt/mongo/mongod
+
