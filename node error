@@ -46,3 +46,7 @@ Generating placeholder library build/opt/third_party/wiredtiger/libwiredtiger.a
 Skipping ranlib for build/opt/third_party/wiredtiger/libwiredtiger.a
 Linking build/opt/mongo/mongod
 
+
+scons: building terminated because of errors.
+scons: writing .sconsign file.
+
