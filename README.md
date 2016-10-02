@@ -105,6 +105,18 @@ source 配置文件
 . 配置文件
 修改配置文件后，必须注销重新登录才能生效
 使用source命令可以不用重新登录
+/etc/profile
+/etc/profile.d/*.sh
+~/.bash_profile
+~/.bashrc
+/etc/bashrc
+
+
+本地终端欢迎信息：/etc/issue
+\l  显示登陆终端号，共6个
+远程登陆欢迎信息：/etc/issue.net
+显示欢迎信息，由ssh的配置文件/etc/ssh/sshd_config决定，加入
+"Banner /etc/issue.net" 行才能显示(重启ssh服务)
 ````
 
 ##用户和用户组
